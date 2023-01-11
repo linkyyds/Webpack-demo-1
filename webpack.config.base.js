@@ -1,10 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
-  devServer: { static: "./dist" },
   entry: "./src/index.js",
   output: {
     filename: "index.[contenthash].js",
@@ -15,7 +13,4 @@ module.exports = {
       template: "src/assets/index.html",
     }),
   ],
-  module: {
-    rules: [],
-  },
 };

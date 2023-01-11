@@ -1,20 +1,13 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
+const base = require("./webpack.config.base.js");
+
 module.exports = {
-  mode: "development",
+  ...base, //...的意思是把base的所有属性抄过来。
   devtool: "inline-source-map",
   devServer: { static: "./dist" },
-  entry: "./src/index.js",
-  output: {
-    filename: "index.[contenthash].js",
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "Development",
-      template: "src/assets/index.html",
-    }),
-  ],
+  mode: "development",
   module: {
     rules: [
       {

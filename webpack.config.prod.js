@@ -2,19 +2,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const base = require("./webpack.config.base.js");
+
 module.exports = {
+  ...base,
   mode: "production",
-  devtool: "inline-source-map",
-  devServer: { static: "./dist" },
-  entry: "./src/index.js",
-  output: {
-    filename: "index.[contenthash].js",
-  },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: "Development",
-      template: "src/assets/index.html",
-    }),
+    ...base.plugins,
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
       chunkFilename: "[id].[contenthash].css",
@@ -28,8 +22,6 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              // you can specify a publicPath here
-              // by default it use publicPath in webpackOptions.output
               publicPath: "../",
             },
           },
