@@ -16,15 +16,25 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/i,
+        test: /\.(png|jpg|gif)$/,
         use: [
-          // Creates `style` nodes from JS strings
-          "style-loader",
-          // Translates CSS into CommonJS
-          "css-loader",
-          // Compiles Sass to CSS
-          "sass-loader",
+          {
+            loader: "file-loader",
+            options: {},
+          },
         ],
+      },
+      // {
+      //   test: /\.styl$/,
+      //   loader: "stylus-loader", // compiles Styl to CSS
+      // },
+      {
+        test: /\.less$/i,
+        use: ["style-loader", "css-loader", "less-loader"],
+      },
+      {
+        test: /\.scss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
